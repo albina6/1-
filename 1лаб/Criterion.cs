@@ -33,7 +33,7 @@ namespace _1лаб
             this.alternArray = new FunctionMembership[countAltern];
             for(int i = 0; i < countAltern; i++)
             {
-                SetAltern(i);
+                alternArray[i]=SetAltern(i);
             }
 
         }
@@ -63,41 +63,62 @@ namespace _1лаб
             Console.WriteLine("2 Трапецеидальная");
             Console.WriteLine("3 Z-образная");
             Console.WriteLine("4 S-образная");
-            double typeKey = Convert.ToInt32(Console.ReadKey());
+            var typeKey = Console.ReadKey();
 
-
-            Console.WriteLine("Введите параметр a");
+            
+            Console.WriteLine("\nВведите параметр a");
             double a = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Введите параметр b");
             double b = Convert.ToDouble(Console.ReadLine());
 
+            //switch (typeKey.Key) //Switch on Key enum
+            //{
+            //    case ConsoleKey.D1:
+            //        Console.WriteLine("Введите параметр c");
+            //        double c = Convert.ToDouble(Console.ReadLine());
+            //        altern = new TriangleFunc(nameAltern, a, b, c);
+            //        break;
 
-            if (typeKey == 1)           //Треугольная
+            //    case ConsoleKey.D2:
+            //        Console.WriteLine("Введите параметр c");
+            //        double c = Convert.ToDouble(Console.ReadLine());
+            //        Console.WriteLine("Введите параметр d");
+            //        double d = Convert.ToDouble(Console.ReadLine());
+            //        altern = new TrapezeFunc(nameAltern, a, b, c, d);
+            //        break;
+
+            //    default:
+            //        Console.WriteLine("Что-то не чисто...");
+            //        break;
+            //}
+
+
+            if (typeKey.Key == ConsoleKey.D1)           //Треугольная
             {
                 Console.WriteLine("Введите параметр c");
                 double c = Convert.ToDouble(Console.ReadLine());
                 altern = new TriangleFunc(nameAltern, a, b, c);
                 return altern;
             }
-                            //else if (typeKey ==2)       //Трапецеидальная
-                            //{
-                            //    Console.WriteLine("Введите параметр c");
-                            //    double c = Convert.ToDouble(Console.ReadLine());
+            //else if (typeKey ==2)       //Трапецеидальная
+            //{
+            //    Console.WriteLine("Введите параметр c");
+            //    double c = Convert.ToDouble(Console.ReadLine());
 
-                            //    Console.WriteLine("Введите параметр d");
-                            //    double d = Convert.ToDouble(Console.ReadLine());
-                            //    altern = new TrapezeFunc(nameAltern, a, b, c,d);
-                            //    return altern;
-                            //}
-                            //else if (typeKey == 3)       //Z-образная
-                            //{
-                            //    altern = new
-                            //}
-                            //else if (typeKey == 4)       //S-образная
-                            //{
-                            //    altern = new
-                            //}
+            //    Console.WriteLine("Введите параметр d");
+            //    double d = Convert.ToDouble(Console.ReadLine());
+            //    altern = new TrapezeFunc(nameAltern, a, b, c,d);
+            //    return altern;
+            //}
+            //else if (typeKey == 3)       //Z-образная
+            //{
+            //    altern = new
+            //}
+            //else if (typeKey == 4)       //S-образная
+            //{
+            //    altern = new
+            //}
             else
             {
                 Console.WriteLine("Введите параметр c");
@@ -108,7 +129,7 @@ namespace _1лаб
                 altern = new TrapezeFunc(nameAltern, a, b, c, d);
                 return altern;
             }
-               
+
 
         }
 
