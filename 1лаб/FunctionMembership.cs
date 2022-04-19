@@ -19,6 +19,13 @@ namespace _1лаб
             this.A = a;
             this.B = b;
         }
+        public FunctionMembership(FunctionMembership func)
+        {
+            this.name = func.Name;
+            this.a = func.A;
+            this.b = func.B;
+            this.GetY() = func.GetY();
+        }
         public virtual double GetY(double x)
         {
             // fun.GetY(x);

@@ -21,6 +21,28 @@ namespace _1лаб
             alternArray = new FunctionMembership[countAltern];
 
         }
+        public Criterion(Criterion crit)
+        {
+            this.nameCriterion = crit.nameCriterion;
+            this.alternArray = new FunctionMembership[crit.alternArray.Length];
+            for(int i = 0; i < crit.alternArray.Length; i++)
+            {
+                this.alternArray[i]=new FunctionMembership(crit.alternArray[i])
+            }
+
+        }
+        public FunctionMembership getAltern(int index)
+        {
+            try
+            {
+                return alternArray[index];
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка в выводе элемента");
+                return new FunctionMembership();
+            }
+        }
 
         public void CritSet()
         {
@@ -53,11 +75,14 @@ namespace _1лаб
         }
         public FunctionMembership SetAltern( int i)
         {
+            Console.Clear();
+            Console.WriteLine("Введите параметры необходимые для инициализации критерия "
+                    + this.Name);
             FunctionMembership altern;
-            Console.WriteLine("Ведите название альтернативы №" + i.ToString());
+            Console.WriteLine("Ведите название альтернативы №" + (i+1).ToString());
             string nameAltern = Console.ReadLine();
 
-            Console.WriteLine("Выберете тип функции принадлежности для альтернативы \"" + nameAltern + "\"");
+            Console.WriteLine("Выберете тип функции принадлежности для альтернативы \"" +( nameAltern) + "\"");
             Console.WriteLine("Для этого введите номер необходимой Вам функции из списка ниже:");
             Console.WriteLine("1 Треугольная");
             Console.WriteLine("2 Трапецеидальная");
@@ -94,7 +119,7 @@ namespace _1лаб
             //}
 
 
-            if (typeKey.Key == ConsoleKey.D1)           //Треугольная
+            if ((typeKey.Key == ConsoleKey.D1) ||( typeKey.Key==ConsoleKey.NumPad1)  )         //Треугольная
             {
                 Console.WriteLine("Введите параметр c");
                 double c = Convert.ToDouble(Console.ReadLine());
@@ -147,5 +172,6 @@ namespace _1лаб
 
 
         }
+
     }
 }

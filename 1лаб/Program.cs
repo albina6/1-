@@ -9,7 +9,17 @@ namespace _1лаб
        
         static void Main(string[] args)
         {
+            FunctionMembership alt = new TriangleFunc("god", 1, 3, 7);
+            double q, w, d, r, t, y;
+            q = alt.GetY(0);
+            w = alt.GetY(1);
+            d = alt.GetY(2);
+             r= alt.GetY(3);
+             t= alt.GetY(5);
+            y = alt.GetY(7);
+
             Criterion[] critArray;
+            Criterion yCriterion;
             Console.WriteLine("Введите количество критериев");
             int count;
             try
@@ -25,13 +35,23 @@ namespace _1лаб
                 return;
             }
             critArray = new Criterion[count];
-            Criterion crit=new Criterion();
+            Criterion crit;
 
             for (int i = 0; i < count; i++)
             {
+                crit = new Criterion();
                 crit.CritSet();
                 critArray[i] = crit;
             }
+
+            //critArray[1].getAltern(0).GetY()
+            Console.Clear();
+            Console.WriteLine("Вы заполнили критерии.\n");
+            Console.WriteLine("Теперь необходимо заполнить результирующую переменную");
+            yCriterion = new Criterion();
+            yCriterion.CritSet();
+
+
 
             TriangleFunc tri;
             Console.WriteLine("Hello World!");
