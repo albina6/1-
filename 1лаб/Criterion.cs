@@ -21,14 +21,16 @@ namespace _1лаб
             alternArray = new FunctionMembership[countAltern];
 
         }
-        public Criterion(Criterion crit)
+        public Criterion CreateCopy()
         {
-            this.nameCriterion = crit.nameCriterion;
-            this.alternArray = new FunctionMembership[crit.alternArray.Length];
-            for(int i = 0; i < crit.alternArray.Length; i++)
+            Criterion critNew = new Criterion(this.Name, this.alternArray.Length);
+            for (int i = 0; i < critNew.alternArray.Length; i++)
             {
-                this.alternArray[i]=new FunctionMembership(crit.alternArray[i])
+                critNew.alternArray[i] = this.alternArray[i].CreateCopy();
             }
+            return critNew;
+           
+            
 
         }
         public FunctionMembership getAltern(int index)
@@ -59,6 +61,11 @@ namespace _1лаб
             }
 
         }
+        //public double GetY(double[] yAltMaxValue)//x?
+        //{
+
+        //}
+        
         public string Name
         {
             get => nameCriterion;
@@ -69,6 +76,10 @@ namespace _1лаб
             alternArray = new FunctionMembership[count];
         }
 
+        public int CountAlt()
+        {
+            return alternArray.Length;
+        }
         public void AddAltern(FunctionMembership altern, int index)
         {
             alternArray[index] = altern;

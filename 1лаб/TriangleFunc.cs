@@ -19,7 +19,15 @@ namespace _1лаб
             B = 102;
             c = 103;
         }
+        public override FunctionMembership CreateCopy()
+        {
+            return new TriangleFunc(Name, A, B, C);
+        }
 
+        //public override double GetY(double x,double maxY)
+        //{
+        //    return Math.Min(this.GetY(x), maxY);
+        //}
         public override double GetY(double x)
         {
             double y;

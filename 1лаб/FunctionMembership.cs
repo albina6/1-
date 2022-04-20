@@ -8,28 +8,42 @@ namespace _1лаб
     {
         private string name;
         private double a, b;
+        private double max = 1.0;
+       // private ref Criterion parent;
         public FunctionMembership()
         {
             name = "null";
             A = B = 100;
         }
-        public FunctionMembership(string name,double a,double b)
+        public FunctionMembership( string name,double a,double b)
         {
             this.name = name;
             this.A = a;
             this.B = b;
         }
-        public FunctionMembership(FunctionMembership func)
+        public virtual FunctionMembership CreateCopy()
         {
-            this.name = func.Name;
-            this.a = func.A;
-            this.b = func.B;
-            this.GetY() = func.GetY();
+            return new FunctionMembership(Name, A, B);
+           
         }
+
         public virtual double GetY(double x)
         {
             // fun.GetY(x);
             return 100.0;
+        }
+
+        public double GetYNew(double x)
+        {
+            // fun.GetY(x);
+            
+            return Math.Min(GetY(x),max);
+        }
+
+        public double Max
+        {
+            get => max;
+            set => max = value;
         }
         public string Name
         {

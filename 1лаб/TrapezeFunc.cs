@@ -21,6 +21,14 @@ namespace _1лаб
             c = 103;
             d = 104;
         }
+        public override FunctionMembership CreateCopy()
+        {
+            return new TrapezeFunc(Name, A, B, C,D);
+        }
+        //public override double GetY(double x, double maxY)
+        //{
+        //    return Math.Min(this.GetY(x), maxY);
+        //}
         public override double GetY(double x)
         {
             double y;
