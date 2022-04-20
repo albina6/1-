@@ -21,6 +21,50 @@ namespace _1лаб
 
             Criterion[] critArray;
             Criterion yCriterion;
+            Rule[] ruleArray;
+
+            critArray = new Criterion[2];
+            critArray[0] = new Criterion("Температура", 3);
+            FunctionMembership alt1 = new TrapezeFunc("Низкая", 0, 0, 50, 100);
+            FunctionMembership alt2 = new TrapezeFunc("Средняя", 0, 50, 100,150);
+            FunctionMembership alt3 = new TrapezeFunc("Высокая", 50, 100,150,150);
+
+            critArray[0].AddAltern(alt1, 0);
+            critArray[0].AddAltern(alt2, 1);
+            critArray[0].AddAltern(alt3, 2);
+
+
+            critArray[1] = new Criterion("Расход", 3);
+            FunctionMembership alt21 = new TriangleFunc("Малый", 0, 2, 4);
+            FunctionMembership alt22 = new TriangleFunc("Средний", 2, 4, 6);
+            FunctionMembership alt23 = new TriangleFunc("Большой", 4, 6, 8);
+
+            critArray[1].AddAltern(alt21, 0);
+            critArray[1].AddAltern(alt22, 1);
+            critArray[1].AddAltern(alt23, 2);
+
+
+            yCriterion = new Criterion("Давление", 3);
+            FunctionMembership alty1 = new TriangleFunc("Низкая", 0, 0, 100);
+            FunctionMembership alty2 = new TriangleFunc("Средняя", 0, 50, 100);
+            FunctionMembership alty3 = new TriangleFunc("Высокая", 0, 100,100);
+
+            yCriterion.AddAltern(alty1, 0);
+            yCriterion.AddAltern(alty2, 1);
+            yCriterion.AddAltern(alty3, 2);
+
+
+
+
+            ruleArray = new Rule[3];
+
+            ruleArray[0] = new Rule(true, 0, alt1, 1, alt21, 0, alty1);
+            ruleArray[1] = new Rule(true, 0, alt2, 0, alt2, 1, alty2);
+            ruleArray[2] = new Rule(false, 0, alt3, 1, alt23, 2, alty3);
+
+            OutputVariable re = new OutputVariable(yCriterion, ruleArray, critArray);
+            double y =re.Course();
+
             Console.WriteLine("Введите количество критериев");
             int count;
             try
