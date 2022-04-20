@@ -10,6 +10,7 @@ namespace _1лаб
         private double a, b;
         private double max = 1.0;
        // private ref Criterion parent;
+        //public void Init
         public FunctionMembership()
         {
             name = "null";

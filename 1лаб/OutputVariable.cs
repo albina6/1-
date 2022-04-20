@@ -8,6 +8,7 @@ namespace _1лаб
     {
         private Criterion yCrit;
         private Rule[] ruleArray;//ссылкой общаюсь
+        private Criterion[] critArray;
         private double[] yAltMax;
         private double[] valueCrit;
         //y output;
@@ -15,62 +16,78 @@ namespace _1лаб
         {
 
         }
-        public OutputVariable(Criterion yCrit, Rule[]ruleArray)
+        public OutputVariable(Criterion yCrit, Rule[]ruleArray, Criterion[] critArray)
         {
             this.yCrit = yCrit.CreateCopy();
             this.ruleArray = ruleArray;
+            this.critArray = critArray;
         }
-
-        public double [] Stage2(Rule [] rule,double[] valueCrit)//определяем степень принадлежности посылок правил(второй этап)
+        public double Course()
+        {
+            this.YOutput();
+            double[] stege2 = Stage2();
+            this.Stage3(stege2);
+            return Stage4();
+        }
+        public double [] Stage2()//определяем степень принадлежности посылок правил(второй этап)
         {
             double a, b;
-            double[] output = new double[rule.Length];
+            double[] output = new double[ruleArray.Length];
 
             for(int i = 0; i< output.Length; i++)
             {
-                a = valueCrit[rule[i].ACriterion];
-                b = valueCrit[rule[i].BCriterion];
-                output[i] = rule[i].GetResult(a, b);
+                a = valueCrit[ruleArray[i].ACriterion];
+                b = valueCrit[ruleArray[i].BCriterion];
+                output[i] = ruleArray[i].GetResult(a, b);
             }
             return output;
         }
-        public double [] Stage3(Rule[]rule,double [] result2,Criterion yCrit)//Stage3
+        public void Stage3(double [] result2)//Stage3
         {
-            double[] yAltMin = new double[yCrit.CountAlt()];
+            yAltMax = new double[yCrit.CountAlt()];
             for(int i = 0; i < yCrit.CountAlt(); i++)
             {
-                yAltMin[i] = 1;
+                yAltMax[i] = 1;
             }
 
-            for (int i = 0; i < rule.Length; i++)
+            for (int i = 0; i < ruleArray.Length; i++)
             {
 
-                int index = rule[i].YAltIndex;
-
-                if ( (yAltMin[index]) > result2[i])
-                {
-                    yAltMin[index] = result2[i];
-                }
+                int index = ruleArray[i].YAltIndex;
+                yAltMax[index] = Math.Min(yAltMax[index], result2[i]);
 
             }
-            return yAltMin;//возвращаем пороговые значения 
+            //возвращаем пороговые значения 
+        }
+        public double Stage4()//максимум функции
+        {
+            double max = 0.0;
+           
+            for (double i=0.0; i <= 10.0; i += 0.05)
+            {
+                if (GetNewY(i) > max)
+                {
+                    max = GetNewY(i);
+                }
+            }
+            return max;
         }
         //public double GetY(double yAltMax)
-        public double GetNewY(Criterion yCriterion, double[] yAltMax,double x)//yAltMax-этообрезаное значение для каждой альтернативы, получаем из Stage3 (yAltMin)
+        public double GetNewY(double x)//yAltMax-этообрезаное значение для каждой альтернативы, получаем из Stage3 (yAltMin)
         {
             double max = 0.0;
             for (int i = 0; i < yAltMax.Length; i++)
             {
-                max = Math.Max(Math.Min(yCriterion.getAltern(i).GetY(x), yAltMax[i]), max);//минимальное значение из GetY и обрезанной альтернативы, 
+                max = Math.Max(Math.Min(yCrit.getAltern(i).GetY(x), yAltMax[i]), max);//минимальное значение из GetY и обрезанной альтернативы, 
                                                                                                     //потом берем максимальное по всем альтернативам
             }
             return max;
         }
 
-        public double YOutput(Rule[] ruleArray,Criterion yCriterion,Criterion[] critArray)
+        public void YOutput()
         {
-            Criterion yNew = yCriterion.CreateCopy();
-            double[] valueCrit = new double[critArray.Length];//хранит оценку по критериям (х)
+            //Criterion yNew = yCriterion.CreateCopy();
+            valueCrit = new double[critArray.Length];//хранит оценку по критериям (х)
             Console.WriteLine("Введите входные данные по каждому критерию.");
             for(int i=0; i < critArray.Length; i++)
             {
@@ -86,14 +103,9 @@ namespace _1лаб
                 }
 
             }
-            Console.WriteLine("Данные введены, ожидайте вывода");
+            Console.WriteLine("Данные введены. Ожидайте.");
 
-            double[] stage2 = Stage2(ruleArray, valueCrit);//определяем степень принадлежности посылок правил(второй этап)
-
-
-
-
-            int count = ruleArray.Length;
+            
 
 
         }

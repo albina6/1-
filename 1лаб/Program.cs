@@ -9,14 +9,15 @@ namespace _1лаб
        
         static void Main(string[] args)
         {
-            FunctionMembership alt = new TriangleFunc("god", 1, 3, 7);
-            double q, w, d, r, t, y;
-            q = alt.GetY(0);
-            w = alt.GetY(1);
-            d = alt.GetY(2);
-             r= alt.GetY(3);
-             t= alt.GetY(5);
-            y = alt.GetY(7);
+            
+            //FunctionMembership alt = new TriangleFunc("god", 1, 3, 7);
+            //double q, w, d, r, t, y;
+            //q = alt.GetY(0);
+            //w = alt.GetY(1);
+            //d = alt.GetY(2);
+            // r= alt.GetY(3);
+            // t= alt.GetY(5);
+            //y = alt.GetY(7);
 
             Criterion[] critArray;
             Criterion yCriterion;
