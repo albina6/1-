@@ -100,8 +100,9 @@ namespace _1лаб
             Console.WriteLine("3 Z-образная");
             Console.WriteLine("4 S-образная");
             var typeKey = Console.ReadKey();
+            Console.ReadLine();
 
-            
+
             Console.WriteLine("\nВведите параметр a");
             double a = Convert.ToDouble(Console.ReadLine());
 
