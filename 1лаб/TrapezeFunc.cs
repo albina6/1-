@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _1лаб
 {
-    public class TrapezeFunc:FunctionMembership
+    public class TrapezeFunc:FunctionMembership //type 2
     {
         private double c, d;
 
@@ -21,6 +21,18 @@ namespace _1лаб
             c = 103;
             d = 104;
         }
+        public override string GetType()
+        {
+            return "Трапецеидальная функция";
+        }
+        public override double[] GetOptions()
+        {
+            double[] options = new double[] { 2, A, B, C, D };
+            return options;
+        }
+
+
+
         public override FunctionMembership CreateCopy()
         {
             return new TrapezeFunc(Name, A, B, C,D);
