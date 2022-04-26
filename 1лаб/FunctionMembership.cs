@@ -4,8 +4,16 @@ using System.Text;
 
 namespace _1лаб
 {
-    public class FunctionMembership
+    public class FunctionMembership//type 0
     {
+        /*
+        type 0 базовая функция
+        type 1 Треугольная
+        type 2 Трапецеидальная
+        type 3 Z-образная
+        type 4 S-образная
+        
+        */
         private string name;
         private double a, b;
         private double max = 1.0;
@@ -26,6 +34,16 @@ namespace _1лаб
         {
             return new FunctionMembership(Name, A, B);
            
+        }
+        public virtual string GetType()
+        {
+            return "Базовая функция";
+        }
+        public virtual double[] GetOptions()
+        {
+            double[] options = new double[] { 0, A, B };
+            return options;
+
         }
 
         public virtual double GetY(double x)

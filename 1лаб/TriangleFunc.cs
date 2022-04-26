@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _1лаб
 {
-    public class TriangleFunc:FunctionMembership
+    public class TriangleFunc:FunctionMembership//type 1
     {
         private double c;
 
@@ -28,6 +28,15 @@ namespace _1лаб
         //{
         //    return Math.Min(this.GetY(x), maxY);
         //}
+        public override string GetType()
+        {
+            return "Треугольная функция";
+        }
+        public override double [] GetOptions()
+        {
+            double[] options = new double[] { 1, A, B ,C};
+            return options;
+        }
         public override double GetY(double x)
         {
             double y;
