@@ -24,21 +24,50 @@ namespace _1лаб
             name = "null";
             A = B = 100;
         }
+        
+        public FunctionMembership(string name, double[] options)
+        {
+            this.Name = name;
+            this.Options(options);
+        }
+
+        public FunctionMembership(FunctionMembership alt)
+        {
+            this.Name = alt.Name;
+            this.Options( alt.Options());
+        }
+
         public FunctionMembership( string name,double a,double b)
         {
             this.name = name;
             this.A = a;
             this.B = b;
         }
+
+        public virtual void Options(double[] options)
+        {
+            this.A = options[0];
+            this.B = options[1];
+
+        }
+
+        public virtual double[] Options()
+        {
+            return new double[] { A, B };
+        }
         public virtual FunctionMembership CreateCopy()
         {
             return new FunctionMembership(Name, A, B);
            
         }
-        public virtual string GetType()
+        public virtual int GetType()
         {
-            return "Базовая функция";
+            return 0;
         }
+        //public virtual string GetType()
+        //{
+        //    return "Базовая функция";
+        //}
         public virtual double[] GetOptions()
         {
             double[] options = new double[] { 0, A, B };

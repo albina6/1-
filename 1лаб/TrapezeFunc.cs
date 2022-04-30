@@ -21,10 +21,29 @@ namespace _1лаб
             c = 103;
             d = 104;
         }
-        public override string GetType()
+
+        public TrapezeFunc(string name, double[] options) : base(name, options) { }
+
+        public override void Options(double[] options)
         {
-            return "Трапецеидальная функция";
+            base.Options(options);
+            this.C = options[2];
+            this.D = options[3];
         }
+        public override double[] Options()
+        {
+
+            return new double[] { A, B, C , D};
+        }
+        public override int GetType()
+        {
+            return 2;
+        }
+
+        //public override string GetType()
+        //{
+        //    return "Трапецеидальная функция";
+        //}
         public override double[] GetOptions()
         {
             double[] options = new double[] { 2, A, B, C, D };

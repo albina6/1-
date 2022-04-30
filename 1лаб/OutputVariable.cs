@@ -38,7 +38,7 @@ namespace _1лаб
             {
                 a = valueCrit[ruleArray[i].ACriterion];
                 b = valueCrit[ruleArray[i].BCriterion];
-                output[i] = ruleArray[i].GetResult(a, b);
+                output[i] = ruleArray[i].GetResult(a, b,critArray);
             }
             return output;
         }
@@ -80,7 +80,7 @@ namespace _1лаб
             double max = 0.0;
             for (int i = 0; i < yAltMax.Length; i++)
             {
-                max = Math.Max(Math.Min(yCrit.getAltern(i).GetY(x), yAltMax[i]), max);//минимальное значение из GetY и обрезанной альтернативы, 
+                max = Math.Max(Math.Min(yCrit.GetAltern(i).GetY(x), yAltMax[i]), max);//минимальное значение из GetY и обрезанной альтернативы, 
                                                                                                     //потом берем максимальное по всем альтернативам
             }
             return max;

@@ -33,7 +33,19 @@ namespace _1лаб
             
 
         }
-        public FunctionMembership getAltern(int index)
+
+        public int GetAltIndex(FunctionMembership alt)
+        {
+            for (int i = 0; i < this.CountAlt(); i++)
+            {
+                if ((this.GetAltern(i).Name == alt.Name) && (this.GetAltern(i).GetOptions() == alt.GetOptions()))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public FunctionMembership GetAltern(int index)
         {
             try
             {
@@ -82,7 +94,7 @@ namespace _1лаб
         }
         public void AddAltern(FunctionMembership altern, int index)
         {
-            alternArray[index] = altern;
+            alternArray[index] =  altern;
         }
         public FunctionMembership SetAltern( int i)
         {
@@ -99,10 +111,26 @@ namespace _1лаб
             Console.WriteLine("2 Трапецеидальная");
             Console.WriteLine("3 Z-образная");
             Console.WriteLine("4 S-образная");
-            var typeKey = Console.ReadKey();
-            Console.ReadLine();
 
+            int type = 0;
+            bool flag = true;
+            while (flag == true)
+            {
+                type = Convert.ToInt32(Console.ReadLine());
+                if (type>0 &&type<5)
 
+                {
+                    flag = false;
+                }
+
+                else
+                {
+                    Console.WriteLine("Вы ввели некорректные данные.\nПовторите попытку.\n");
+
+                }
+            }
+
+            
             Console.WriteLine("\nВведите параметр a");
             double a = Convert.ToDouble(Console.ReadLine());
 
@@ -131,14 +159,14 @@ namespace _1лаб
             //}
 
 
-            if ((typeKey.Key == ConsoleKey.D1) ||( typeKey.Key==ConsoleKey.NumPad1)  )         //Треугольная
+            if (type == 1)       //Треугольная
             {
                 Console.WriteLine("Введите параметр c");
                 double c = Convert.ToDouble(Console.ReadLine());
                 altern = new TriangleFunc(nameAltern, a, b, c);
                 return altern;
             }
-            //else if (typeKey ==2)       //Трапецеидальная
+            //else if  (type == 1)       //Трапецеидальная
             //{
             //    Console.WriteLine("Введите параметр c");
             //    double c = Convert.ToDouble(Console.ReadLine());

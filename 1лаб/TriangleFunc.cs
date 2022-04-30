@@ -12,13 +12,14 @@ namespace _1лаб
         {
             this.c = c;
         }
-        public TriangleFunc()
+        public TriangleFunc():base ()
         {
             this.Name = "треугольная функция";
-            A = 101;
-            B = 102;
-            c = 103;
+            C = 103;
         }
+
+        public TriangleFunc( string name,double[] options) : base(name, options) { }
+
         public override FunctionMembership CreateCopy()
         {
             return new TriangleFunc(Name, A, B, C);
@@ -29,10 +30,28 @@ namespace _1лаб
         //    return Math.Min(this.GetY(x), maxY);
         //}
 
-        public override string GetType()
+
+
+        public override void Options(double[] options)
         {
-            return "Треугольная функция";
+            base.Options(options);
+            this.C = options[2];
         }
+        public override double[] Options()
+        {
+
+            return new double[] { A, B, C };
+        }
+
+        public override int GetType()
+        {
+            return 1;
+        }
+
+        //public override string GetType()
+        //{
+        //    return "Треугольная функция";
+        //}
         public override double[] GetOptions()
         {
             double[] options = new double[] { 1, A, B, C };

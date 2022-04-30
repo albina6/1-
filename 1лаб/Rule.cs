@@ -10,9 +10,10 @@ namespace _1лаб
         // private FunctionMembership aAltern, bAltern, yAltern;
         //private Criterion aCriterion, bCriterion, yCriterion;
         //private int aIndexAlt, bIndexAlt, yIndexAlt;// сделано чтобы всегда можно было добраться до критерия 
-
-        private int aCriterion, bCriterion, yAltIndex;
-        private FunctionMembership aAlt, bAlt, yAlt;// сделано чтобы всегда можно было добраться до критерия 
+        private int aAltIndex, bAltIndex, yAltIndex;
+        
+        private int aCriterion, bCriterion;//, yAltIndex;
+        //private FunctionMembership aAlt, bAlt, yAlt;// сделано чтобы всегда можно было добраться до критерия 
         private double result;
         //public Rule(bool sign, FunctionMembership aAltern,FunctionMembership bAltern,FunctionMembership yAltern)
         //{
@@ -77,14 +78,14 @@ namespace _1лаб
         {
             for (int i = 0; i < crit.CountAlt(); i++)
             {
-                Console.WriteLine(i.ToString() + ".  " + crit.getAltern(i).Name );
+                Console.WriteLine(i.ToString() + ".  " + crit.GetAltern(i).Name );
             }
         }
         private void RuleAdd(Criterion[] critArray)
         {
             Console.WriteLine("Выберите знак для данного правила");
-            Console.WriteLine(critArray[ACriterion].Name + "( " + aAlt.Name + " )" + " +/* "
-                                        + critArray[BCriterion].Name + "( " + bAlt.Name + " )");
+            Console.WriteLine(critArray[ACriterion].Name + "( " + critArray[ACriterion].GetAltern(aAltIndex).Name + " )" + " +/* "
+                                        + critArray[BCriterion].Name + "( " + critArray[BCriterion].GetAltern(bAltIndex).Name + " )");
 
 
 
@@ -129,33 +130,33 @@ namespace _1лаб
 
             return (indexCrit, indexAlt);
         }
-        private int SetCrit(Criterion yCrit)
+        private int SetCrit(Criterion crit)
         {
             
-            Console.WriteLine("Выберете необходимую альтернативу критерия " + yCrit.Name + "\n");
-            PrintAlt(yCrit);
-            int indexAlt =SelectIndex(yCrit.CountAlt());
+            Console.WriteLine("Выберете необходимую альтернативу критерия " + crit.Name + "\n");
+            PrintAlt(crit);
+            int indexAlt =SelectIndex(crit.CountAlt());
             return indexAlt;
         }
         //}
         public Rule SetRule(Criterion[] criterionArray, Criterion yCrit)
         {
 
-            // int countCrit = criterionArray.Length;
+            //// int countCrit = criterionArray.Length;
             int al;
             Console.WriteLine("Выберете первый критерий.\n");
-            (ACriterion, al) = SetCrit(criterionArray);
-            aAlt = criterionArray[ACriterion].getAltern(al);
+            (ACriterion, AAltIndex) = SetCrit(criterionArray);
+            //aAlt = criterionArray[ACriterion].GetAltern(al);
 
             Console.WriteLine("Выберете второй критерий.\n");
-            (BCriterion, al) = SetCrit(criterionArray);
-            bAlt = criterionArray[BCriterion].getAltern(al);
+            (BCriterion, bAltIndex) = SetCrit(criterionArray);
+            //bAlt = criterionArray[BCriterion].GetAltern(al);
 
             RuleAdd(criterionArray);
 
             Console.WriteLine("Выберете альтернативу для у.\n");
             yAltIndex = SetCrit(yCrit);
-            yAlt = yCrit.getAltern(yAltIndex);
+            //yAlt = yCrit.GetAltern(yAltIndex);
             return this;
 
         }
@@ -169,34 +170,93 @@ namespace _1лаб
             get => bCriterion;
             set => bCriterion = value;
         }
+        
+
+
+        public int AAltIndex
+        {
+            get => aAltIndex;
+            set => aAltIndex = value;
+        }
+
+        public int BAltIndex
+        {
+            get => bAltIndex;
+            set => bAltIndex = value;
+        }
         public int YAltIndex
         {
             get => yAltIndex;
             set => yAltIndex = value;
         }
-        
-        
+
+        public bool AndBool
+        {
+            get => and;
+            set => and = value;
+        }
+
+        public Rule()
+        {
+            this.and = true;
+            this.Options =new int[] { 0,0,0,0,0 };
+        }
+
         public Rule(Criterion[] criterionArray, Criterion yCrit)
         {
             SetRule( criterionArray,  yCrit);
         }
-        public Rule(bool and, int aCriterion, FunctionMembership aAlt,int bCriterion, FunctionMembership bAlt, int yAltIndex, FunctionMembership yAlt)
+        public Rule(bool and, int [] options)
         {
-            this.aCriterion = aCriterion;
-            this.aAlt = aAlt;
-
-            this.bCriterion = bCriterion;
-            this.bAlt = bAlt;
-
-            this.yAltIndex = yAltIndex;
-            this.yAlt = yAlt;
+            this.and = and;
+            this.Options=options;
         }
 
-        public double GetResult(double aX, double bX)//определяем степень принадлежности посылок правил(второй этап)
+        public  int[] Options
+        {
+            get
+            {
+                return new int[] { aCriterion, aAltIndex, bCriterion, bAltIndex, yAltIndex };
+            }
+            set
+            {
+                this.aCriterion = value[0];
+                this.aAltIndex = value[1];
+                this.bCriterion = value[2];
+                this.bAltIndex = value[3];
+                this.yAltIndex = value[4];
+            }
+        }
+
+
+
+        public Rule(bool and, int aCriterion,int aAltIndex, int bCriterion, int bAltIndex, int yAltIndex)
+        {
+            this.aCriterion = aCriterion;
+            this.aAltIndex = aAltIndex;
+
+            this.bCriterion = bCriterion;
+            this.bAltIndex = bAltIndex;
+
+            this.yAltIndex = yAltIndex;
+        }
+        //public Rule(bool and, int aCriterion, FunctionMembership aAlt,int bCriterion, FunctionMembership bAlt, int yAltIndex, FunctionMembership yAlt)
+        //{
+        //    this.aCriterion = aCriterion;
+        //    this.aAlt = aAlt;
+
+        //    this.bCriterion = bCriterion;
+        //    this.bAlt = bAlt;
+
+        //    this.yAltIndex = yAltIndex;
+        //    this.yAlt = yAlt;
+        //}
+
+        public double GetResult(double aX, double bX,Criterion[] critArray)//определяем степень принадлежности посылок правил(второй этап)
         {
             double a, b;
-            a = aAlt.GetY(aX);
-            b = bAlt.GetY(bX);
+            a = critArray[aCriterion].GetAltern( aAltIndex).GetY(aX);
+            b = critArray[bCriterion].GetAltern(bAltIndex).GetY(bX);
             if (and)
             {
                 return result = Math.Min(a, b);
@@ -204,15 +264,38 @@ namespace _1лаб
             else
                 return result = Math.Max(a, b);
         }
-        public double GetYRule(double x)
-        {
-            double y = yAlt.GetY(x);
-            if (y < result)
-                return y;
-            else
-                return result;
-        }
 
+        //public double GetResult(double aX, double bX)//определяем степень принадлежности посылок правил(второй этап)
+        //{
+        //    double a, b;
+        //    a =  aAlt.GetY(aX);
+        //    b = bAlt.GetY(bX);
+        //    if (and)
+        //    {
+        //        return result = Math.Min(a, b);
+        //    }
+        //    else
+        //        return result = Math.Max(a, b);
+        //}
+       
+        
+        
+        
+        //не видила вызовы
+        
+        
+        //public double GetYRule(double x)
+        //{
+        //    double y = yAlt.GetY(x);
+        //    if (y < result)
+        //        return y;
+        //    else
+        //        return result;
+        //}
+
+
+
+        ////////////////
 
         //public double GetResult(double aX,double bX)
         //{
