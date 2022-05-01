@@ -64,10 +64,10 @@ namespace _1лаб
         {
             return 0;
         }
-        //public virtual string GetType()
-        //{
-        //    return "Базовая функция";
-        //}
+        public virtual string GetTypeSTR
+        {
+            get=> "Базовая функция";
+        }
         public virtual double[] GetOptions()
         {
             double[] options = new double[] { 0, A, B };

@@ -5,101 +5,103 @@ namespace _1лаб
 {
     class Program
     {
-        static void Restre()
-        {
-            bool fl = true;
-            while (fl)
-            {
-                Console.WriteLine("Введите название документа с которого хотите загрузить данные" +
-                                 " или нажмите Enter, если хотите загрузить данные из документа по умолчанию ");
-                try
-                {
-                    string nameFile = Console.ReadLine();
-                    if (save.Restore(nameFile) != (null, null, null))
-                    {
-                        (yCrit, critArray, ruleArray) = save.Restore(nameFile);
-                        /*1*/
-                        fl = false;
-                    }
-                    else
-                        Console.WriteLine("Введены некорректные данные. Повторите попытку");
-                }
-                catch
-                {
-                    Console.WriteLine("Введены некорректные данные. Повторите попытку");
-                }
+        //static void Restre()
+        //{
+        //    bool fl = true;
+        //    while (fl)
+        //    {
+        //        Console.WriteLine("Введите название документа с которого хотите загрузить данные" +
+        //                         " или нажмите Enter, если хотите загрузить данные из документа по умолчанию ");
+        //        try
+        //        {
+        //            string nameFile = Console.ReadLine();
+        //            if (save.Restore(nameFile) != (null, null, null))
+        //            {
+        //                (yCrit, critArray, ruleArray) = save.Restore(nameFile);
+        //                /*1*/
+        //                fl = false;
+        //            }
+        //            else
+        //                Console.WriteLine("Введены некорректные данные. Повторите попытку");
+        //        }
+        //        catch
+        //        {
+        //            Console.WriteLine("Введены некорректные данные. Повторите попытку");
+        //        }
 
-            }
-        }
-        static void Question(Criterion yCrit, Criterion[] critArray, Rule[] ruleArray) 
-        {
-            Console.Clear();
-            bool flag = true;
-            while (flag)
-            {
-                Console.WriteLine("Нажмите 1, если хотите загрузить данные с диска. ");
-                Console.WriteLine("Нажмите 2, если хотите ввести данные с использованием консоли. ");
+        //    }
+        //}
+        //static void Question(Criterion yCrit, Criterion[] critArray, Rule[] ruleArray) 
+        //{
+        //    Console.Clear();
+        //    bool flag = true;
+        //    while (flag)
+        //    {
+        //        Console.WriteLine("Нажмите 1, если хотите загрузить данные с диска. ");
+        //        Console.WriteLine("Нажмите 2, если хотите ввести данные с использованием консоли. ");
 
                
-                if ((yCrit != null) && (critArray != null) && (ruleArray != null))
-                {
-                    Console.WriteLine("Нажмите 3, если хотите отредактировать введенные данные. ");
-                    Console.WriteLine("Нажмите 4, если хотите сохранить введенные данные на диск. ");
-                    Console.WriteLine("Нажмите 5, если хотите продолжить и произвести расчет. ");
-                }
-                int value = 0;
-                string s = Console.ReadLine();
+        //        if ((yCrit != null) && (critArray != null) && (ruleArray != null))
+        //        {
+        //            Console.WriteLine("Нажмите 3, если хотите отредактировать введенные данные. ");
+        //            Console.WriteLine("Нажмите 4, если хотите сохранить введенные данные на диск. ");
+        //            Console.WriteLine("Нажмите 5, если хотите продолжить и произвести расчет. ");
+        //        }
+        //        int value = 0;
+        //        string s = Console.ReadLine();
 
 
-                if (!int.TryParse(s, out int answer))
-                {
+        //        if (!int.TryParse(s, out int answer))
+        //        {
 
-                    Console.WriteLine("Введены некорректные данные. Повторите попытку");
-                }
-                else
-                {
-                    Save save = new Save();
-                    value = Convert.ToInt32(s);
-                    if (value == 1)
-                    {
+        //            Console.WriteLine("Введены некорректные данные. Повторите попытку");
+        //        }
+        //        else
+        //        {
+        //            Save save = new Save();
+        //            value = Convert.ToInt32(s);
+        //            if (value == 1)
+        //            {
                         
-                    }
+        //            }
 
-                    if (value == 2)
-                    {
+        //            if (value == 2)
+        //            {
                     
-                    }
+        //            }
 
 
 
-                        flag = false;
-                }
+        //                flag = false;
+        //        }
 
 
 
 
-                outputI = new OutputVariable(yCriterion, ruleArray, critArray);
-                Console.WriteLine(outputI.Course());
+        //        outputI = new OutputVariable(yCriterion, ruleArray, critArray);
+        //        Console.WriteLine(outputI.Course());
 
-                Console.WriteLine("Хотите ввести другие данные?\n(+/-)");
+        //        Console.WriteLine("Хотите ввести другие данные?\n(+/-)");
 
-                char s = Console.ReadKey().KeyChar;
-                if (s == '+')
-                {
+        //        char s = Console.ReadKey().KeyChar;
+        //        if (s == '+')
+        //        {
 
-                }
-                else if (s == '-')
-                {
-                    flag = false;
-                }
-                else
-                {
-                    Console.WriteLine("Вы ввели неправильный знак.\nПовторите попытку.\n");
-                }
-            }
-        }
+        //        }
+        //        else if (s == '-')
+        //        {
+        //            flag = false;
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Вы ввели неправильный знак.\nПовторите попытку.\n");
+        //        }
+        //    }
+        //}
         static void Main(string[] args)
         {
+
+            InputData input = new InputData();
             //Criterion[] critArray;
             //Criterion yCriterion;
             //Rule[] ruleArray;
@@ -173,49 +175,49 @@ namespace _1лаб
 
 
 
-            Criterion[] critArray;
-            Criterion yCriterion;
-            Rule[] ruleArray;
+            //Criterion[] critArray;
+            //Criterion yCriterion;
+            //Rule[] ruleArray;
 
 
 
-            //// Save save = new Save(yCriterion, critArray, ruleArray);
+            ////// Save save = new Save(yCriterion, critArray, ruleArray);
 
-            Save save = new Save();
-            int g = 0;
+            //Save save = new Save();
+            //int g = 0;
 
-            critArray = new Criterion[1];
-            yCriterion = new Criterion();
-            ruleArray = new Rule[1];
+            //critArray = new Criterion[1];
+            //yCriterion = new Criterion();
+            //ruleArray = new Rule[1];
 
 
-            (yCriterion, critArray, ruleArray) = save.Restore();
+            //(yCriterion, critArray, ruleArray) = save.Restore();
 
-            // save.Restore(yCriterion, critArray, ruleArray);
+            //// save.Restore(yCriterion, critArray, ruleArray);
 
-            OutputVariable outputI;
-            flag = true;
-            while (flag)
-            {
-                outputI = new OutputVariable(yCriterion, ruleArray, critArray);
-                Console.WriteLine(outputI.Course());
+            //OutputVariable outputI;
+            //flag = true;
+            //while (flag)
+            //{
+            //    outputI = new OutputVariable(yCriterion, ruleArray, critArray);
+            //    Console.WriteLine(outputI.Course());
 
-                Console.WriteLine("Хотите ввести другие данные?\n(+/-)");
+            //    Console.WriteLine("Хотите ввести другие данные?\n(+/-)");
 
-                char s = Console.ReadKey().KeyChar;
-                if (s == '+')
-                {
+            //    char s = Console.ReadKey().KeyChar;
+            //    if (s == '+')
+            //    {
 
-                }
-                else if (s == '-')
-                {
-                    flag = false;
-                }
-                else
-                {
-                    Console.WriteLine("Вы ввели неправильный знак.\nПовторите попытку.\n");
-                }
-            }
+            //    }
+            //    else if (s == '-')
+            //    {
+            //        flag = false;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Вы ввели неправильный знак.\nПовторите попытку.\n");
+            //    }
+            //}
 
 
 
@@ -235,7 +237,7 @@ namespace _1лаб
             //Console.WriteLine("B");
             //double b = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("C");
+            //Console.WriteLine("C");
             //double c = Convert.ToDouble(Console.ReadLine());
             //tri = new TriangleFunc(name, a, b, c);
         }

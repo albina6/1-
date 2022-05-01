@@ -48,10 +48,10 @@ namespace _1лаб
             return 1;
         }
 
-        //public override string GetType()
-        //{
-        //    return "Треугольная функция";
-        //}
+        public override string GetTypeSTR
+        {
+            get => "Треугольная функция";
+        }
         public override double[] GetOptions()
         {
             double[] options = new double[] { 1, A, B, C };

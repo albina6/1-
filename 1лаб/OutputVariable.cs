@@ -64,7 +64,7 @@ namespace _1лаб
             double max = 0.0;
             double indexMax=0;
            
-            for (double i=0.0; i <= 100; i +=0.1)////////////////for (double i=0.0; i <= 10.0; i += 0.05)
+            for (double i=0.0; i <= 100; i +=0.01)////////////////for (double i=0.0; i <= 10.0; i += 0.05)
             {
                 if (GetNewY(i) > max)
                 {

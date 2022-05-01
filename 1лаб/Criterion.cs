@@ -11,9 +11,10 @@ namespace _1лаб
 
         public Criterion()
         {
-            this.nameCriterion = "Критерий";
-            //this.countAlt = 0;
-            alternArray = new FunctionMembership[1];
+            this.CritSet();
+            //this.nameCriterion = "Критерий";
+            ////this.countAlt = 0;
+            //alternArray = new FunctionMembership[1];
         }
         public Criterion(string nameCriterion, int countAltern)
         {
@@ -61,10 +62,10 @@ namespace _1лаб
         public void CritSet()
         {
             
-            Console.WriteLine("Ведите название критерия." );
+            Console.WriteLine("Введите название критерия." );
             string nameCrit = Console.ReadLine();
 
-            Console.WriteLine("Ведите количество альтернатив критерии "+ nameCrit);
+            Console.WriteLine("Введите количество альтернатив критерии "+ nameCrit);
             int countAltern = Convert.ToInt32(Console.ReadLine());
             this.Name = nameCrit;
             this.alternArray = new FunctionMembership[countAltern];
@@ -103,8 +104,9 @@ namespace _1лаб
             Console.WriteLine("Введите параметры необходимые для инициализации критерия "
                     + this.Name);
             FunctionMembership altern;
-            Console.WriteLine("Ведите название альтернативы №" + (i+1).ToString());
+            Console.WriteLine("Введите название альтернативы №" + (i+1).ToString());
             string nameAltern = Console.ReadLine();
+            Console.WriteLine();
 
             Console.WriteLine("Выберете тип функции принадлежности для альтернативы \"" +( nameAltern) + "\"");
             Console.WriteLine("Для этого введите номер необходимой Вам функции из списка ниже:");

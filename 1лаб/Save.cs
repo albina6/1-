@@ -197,14 +197,15 @@ namespace _1лаб
 
 
 
-        public (Criterion, Criterion[],Rule[]) Restore( string nameFile = "D:/MIREX/1ч/MO/3сем/нс шахм/лабы/1лаб/1лаб/test.txt")
+        public (Criterion, Criterion[],Rule[]) Restore( string nameFile = "test.txt")
         {
+            string pathFile = "D:/MIREX/1ч/MO/3сем/нс шахм/лабы/1лаб/1лаб/"+nameFile;
 
             Criterion [] critArray;
             Criterion yCriterion ;
             Rule[] ruleArray;
 
-            using (StreamReader reader = new StreamReader(nameFile))
+            using (StreamReader reader = new StreamReader(pathFile))
             {
                 string[] str;
 
@@ -260,9 +261,10 @@ namespace _1лаб
 
         //public int w = 0;
         //public string[] writer;
-        public Save(Criterion yCrit, Criterion[] critArray, Rule []ruleArray,string nameFile= "D:/MIREX/1ч/MO/3сем/нс шахм/лабы/1лаб/1лаб/test.txt")
+        public Save(Criterion yCrit, Criterion[] critArray, Rule []ruleArray, string nameFile = "test.txt")
         {
-            using (StreamWriter writer = new StreamWriter(nameFile, false))
+            string pathFile = "D:/MIREX/1ч/MO/3сем/нс шахм/лабы/1лаб/1лаб/" + nameFile;
+            using (StreamWriter writer = new StreamWriter(pathFile, false))
             {
                 //writer = new string[20];
                 try
@@ -296,7 +298,7 @@ namespace _1лаб
                 }
                 finally
                 {
-                    //writer.Close();
+                    writer.Close();
                 }
                 
             }
