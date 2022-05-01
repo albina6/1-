@@ -60,6 +60,7 @@ namespace _1лаб
 
         public void CritSet()
         {
+            
             Console.WriteLine("Ведите название критерия." );
             string nameCrit = Console.ReadLine();
 

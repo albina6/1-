@@ -239,7 +239,7 @@ namespace _1лаб
                 catch (IOException ex)
                 {
                     Console.WriteLine("Ошибка загрузки файла: " + ex.Message);
-                    return (new Criterion(), new Criterion[1] { new Criterion() }, new Rule[1] { new Rule() });
+                    return (null, null, null);
                 }
                 finally
                 {
@@ -253,7 +253,10 @@ namespace _1лаб
 
 
 
-
+        public Save()
+        {
+            
+        }
 
         //public int w = 0;
         //public string[] writer;
@@ -288,7 +291,7 @@ namespace _1лаб
                 }
                 catch (IOException ex)
                 {
-                    Console.WriteLine("Ошибка открытия файла: " + ex.Message);
+                    Console.WriteLine("Ошибка записи в файл: " + ex.Message);
                     return;
                 }
                 finally

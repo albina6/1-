@@ -64,7 +64,7 @@ namespace _1лаб
             double max = 0.0;
             double indexMax=0;
            
-            for (double i=0; i <= 100; i +=1)////////////////for (double i=0.0; i <= 10.0; i += 0.05)
+            for (double i=0.0; i <= 100; i +=0.1)////////////////for (double i=0.0; i <= 10.0; i += 0.05)
             {
                 if (GetNewY(i) > max)
                 {
@@ -72,7 +72,7 @@ namespace _1лаб
                     indexMax = i;
                 }
             }
-            return indexMax;
+            return Math.Round( indexMax, 3);
         }
         //public double GetY(double yAltMax)
         public double GetNewY(double x)//yAltMax-этообрезаное значение для каждой альтернативы, получаем из Stage3 (yAltMin)

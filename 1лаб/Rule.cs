@@ -41,7 +41,7 @@ namespace _1лаб
             }
          */
 
-        private int readInt(int max)
+        private int ReadInt(int max)
         {
             bool flag = true;
             int value = 0;
@@ -53,7 +53,7 @@ namespace _1лаб
 
                     Console.WriteLine("Bведено не число");
                 }
-                else if (Convert.ToInt32(s) >= max)
+                else if (Convert.ToInt32(s) > max)
                 {
                     Console.WriteLine("Вы ввели число превыщающее допустимое значение");
                 }
@@ -70,7 +70,7 @@ namespace _1лаб
         {
             for (int i = 0; i < critArray.Length; i++)
             {
-                Console.WriteLine(i.ToString() + ".  " + critArray[i].Name);
+                Console.WriteLine((i+1).ToString() + ".  " + critArray[i].Name);
             }
             
         }
@@ -78,11 +78,12 @@ namespace _1лаб
         {
             for (int i = 0; i < crit.CountAlt(); i++)
             {
-                Console.WriteLine(i.ToString() + ".  " + crit.GetAltern(i).Name );
+                Console.WriteLine((i+1).ToString() + ".  " + crit.GetAltern(i).Name );
             }
         }
         private void RuleAdd(Criterion[] critArray)
         {
+            Console.Clear();
             Console.WriteLine("Выберите знак для данного правила");
             Console.WriteLine(critArray[ACriterion].Name + "( " + critArray[ACriterion].GetAltern(aAltIndex).Name + " )" + " +/* "
                                         + critArray[BCriterion].Name + "( " + critArray[BCriterion].GetAltern(bAltIndex).Name + " )");
@@ -110,23 +111,24 @@ namespace _1лаб
                     
                 }
             }
+            Console.WriteLine();
 
         }
         private int SelectIndex(int max)
         {
             Console.WriteLine("Ведите номер выбранного элемента.");
-            return readInt(max);
+            return ReadInt(max);
         }
 
         private (int, int) SetCrit(Criterion[] criterionArray)
         {
             int countCrit = criterionArray.Length;
             PrintCrit(criterionArray);
-            int indexCrit = SelectIndex(countCrit);
+            int indexCrit = SelectIndex(countCrit)-1;
 
             Console.WriteLine("Выберете необходимую альтернативу критерия " + criterionArray[indexCrit].Name + "\n");
             PrintAlt(criterionArray[indexCrit]);
-            int indexAlt = SelectIndex(criterionArray[indexCrit].CountAlt());
+            int indexAlt = SelectIndex(criterionArray[indexCrit].CountAlt()) - 1;
 
             return (indexCrit, indexAlt);
         }
