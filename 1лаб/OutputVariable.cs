@@ -47,7 +47,7 @@ namespace _1лаб
             yAltMax = new double[yCrit.CountAlt()];
             for(int i = 0; i < yCrit.CountAlt(); i++)
             {
-                yAltMax[i] = 1;
+                yAltMax[i] = 2.0;
             }
 
             for (int i = 0; i < ruleArray.Length; i++)
@@ -56,6 +56,14 @@ namespace _1лаб
                 int index = ruleArray[i].YAltIndex;
                 yAltMax[index] = Math.Min(yAltMax[index], result2[i]);
 
+            }
+            for (int i = 0; i < yCrit.CountAlt(); i++)
+            {
+                if (yAltMax[i] > 1)
+                {
+                    yAltMax[i] = 0;
+                }
+                
             }
             //возвращаем пороговые значения 
         }
@@ -66,12 +74,13 @@ namespace _1лаб
            
             for (double i=0.0; i <= 100; i +=0.01)////////////////for (double i=0.0; i <= 10.0; i += 0.05)
             {
-                if (GetNewY(i) > max)
+                if (Math.Round(GetNewY(i), 3) > max)
                 {
-                    max = GetNewY(i);
+                    max = Math.Round(GetNewY(i), 3);
                     indexMax = i;
                 }
             }
+            //return indexMax;
             return Math.Round( indexMax, 3);
         }
         //public double GetY(double yAltMax)

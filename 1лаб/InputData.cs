@@ -209,34 +209,42 @@ namespace _1лаб
 
             }
         }
-        public void RedactRule(Rule rule)
+        public Rule RedactRule(Rule rule)
         {
-            rule = new Rule(critArray, yCrit);
+            return new Rule(critArray, yCrit);
         }
 
         public void RedactData()
         {
-            int indexMax= PrintData();
-            Console.WriteLine("\nВведите номер элемента, который хотите отредактировать");
-            int index = InCheckData(indexMax);
-            if (index <= critArray.Length)
+            bool fl = true;
+            while (fl)
             {
-                RedactCrit(critArray[index]);
+                int indexMax = PrintData();
+                Console.WriteLine("\nВведите номер элемента, который хотите отредактировать");
+                int index = InCheckData(indexMax);
+                if (index <= critArray.Length)
+                {
+                    RedactCrit(critArray[index - 1]);//индексация у пользователя с 1
+                }
+                else if (index == critArray.Length + 1)
+                {
+                    RedactCrit(yCrit);
+                }
+                else
+                {
+                    ruleArray[index - critArray.Length - 2] = RedactRule(ruleArray[index - critArray.Length - 2]);//нужно вычисть все критерии 
+                }
+                Console.WriteLine("Хотите продолжить редактирование?\n+/-");
+                fl = YesNo();
             }
-            else if (index == critArray.Length + 1)
-            {
-                RedactCrit(yCrit);
-            }
-            else
-                RedactRule(ruleArray[index - critArray.Length - 1]);//нужно вычисть все критерии 
         }
 
         public void PrintRule(Rule rule)
         {
             string and = rule.AndBool ? " and " : " or ";
-            Console.WriteLine("Альтернатива " + critArray[rule.ACriterion].GetAltern(rule.AAltIndex).Name + " критерия" + critArray[rule.ACriterion].Name +
-                                and + "Альтернатива " + critArray[rule.BCriterion].GetAltern(rule.BAltIndex).Name + " критерия" + critArray[rule.BCriterion].Name +
-                                     " = " + "Альтернатива " + yCrit.GetAltern(rule.YAltIndex).Name + " критерия" + yCrit.Name);
+            Console.WriteLine("Альтернатива " + critArray[rule.ACriterion].GetAltern(rule.AAltIndex).Name + " критерия " + critArray[rule.ACriterion].Name +
+                                and + "Альтернатива " + critArray[rule.BCriterion].GetAltern(rule.BAltIndex).Name + " критерия " + critArray[rule.BCriterion].Name +
+                                     " = " + "Альтернатива " + yCrit.GetAltern(rule.YAltIndex).Name + " критерия " + yCrit.Name);
         }
         public void PrintCrit(Criterion crit, bool flag = false)
         {
@@ -245,7 +253,7 @@ namespace _1лаб
             {
                 if (flag)
                     {
-                        Console.WriteLine((i + 1).ToString());
+                        Console.WriteLine("№ "+(i + 1).ToString());
                     }
                 
                 PrintAlt(crit.GetAltern(i));

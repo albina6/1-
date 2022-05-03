@@ -137,7 +137,7 @@ namespace _1лаб
             
             Console.WriteLine("Выберете необходимую альтернативу критерия " + crit.Name + "\n");
             PrintAlt(crit);
-            int indexAlt =SelectIndex(crit.CountAlt());
+            int indexAlt =SelectIndex(crit.CountAlt())-1;//как записываем так и читаем,(с консоли +1 индекс считываем 1-N, а в массиве 0-(N-1))
             return indexAlt;
         }
         //}
