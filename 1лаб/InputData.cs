@@ -108,7 +108,7 @@ namespace _1лаб
 
                     Console.WriteLine("введено не число");
                 }
-                else if ((Convert.ToInt32(s) > max)&&(Convert.ToInt32(s)<1))
+                else if ((Convert.ToInt32(s) > max)||(Convert.ToInt32(s)<1))
                 {
                     Console.WriteLine("Вы ввели число которое не входит в ожидаемый диапазон.\n Повторите попытку.");
                 }
@@ -214,6 +214,7 @@ namespace _1лаб
             return new Rule(critArray, yCrit);
         }
 
+       
         public void RedactData()
         {
             bool fl = true;
@@ -262,7 +263,7 @@ namespace _1лаб
         public void PrintAlt(FunctionMembership alt)
         {
             Console.WriteLine(alt.Name + ": " + alt.GetTypeSTR);
-            double[] op = alt.GetOptions();
+            double[] op = alt.Options();
             for (int i = 0; i < op.Length; i++)
             {
                 
@@ -372,10 +373,11 @@ namespace _1лаб
 
         void Question()
         {
-            Console.Clear();
+            
             bool flag = true;
             while (flag)
             {
+                Console.Clear();
                 int max = 2;
                 Console.WriteLine("Нажмите 1, если хотите загрузить данные с диска. ");
                 Console.WriteLine("Нажмите 2, если хотите ввести данные с использованием консоли. ");
@@ -386,8 +388,9 @@ namespace _1лаб
                     Console.WriteLine("Нажмите 3, если хотите отредактировать введенные данные. ");
                     Console.WriteLine("Нажмите 4, если хотите сохранить введенные данные на диск. ");
                     Console.WriteLine("Нажмите 5, если хотите продолжить и произвести расчет. ");
+                    Console.WriteLine("Нажмите 6, если хотите посмотреть введенные данные. ");
 
-                    max = 5;
+                    max = 6;
                 }
                 max++;
                 Console.WriteLine("Нажмите " + max .ToString() + ", если хотите выйти из программы. ");
@@ -418,9 +421,15 @@ namespace _1лаб
                 {
                     Save();
                 }
-                else
+                else if(value==5)
                 {
                     Calculation();
+                }
+                else
+                {
+                    PrintData();
+                    Console.WriteLine("Для выхода в главное меню, нажмите любой символ.");
+                    Console.ReadKey();
                 }
                 //else
                 //{
